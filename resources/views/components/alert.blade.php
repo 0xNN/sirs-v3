@@ -1,0 +1,1 @@
+{{-- <span class="p-1 text-white bg-'.$cek['warna'].'"><i class="fas fa-exclamation"></i> '.$cek['pesan'].'</span> --}}

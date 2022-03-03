@@ -1,0 +1,15 @@
+.table-bordered-custom {
+  border: 1px solid #ddd !important;
+}
+
+@media screen and (max-width: 767px) {
+  /* table caption {
+    display: none;
+  } */
+}
+
+.p-custom {
+  text-align: center;
+  padding-top: 140px;
+  font-size: 14px;
+}
