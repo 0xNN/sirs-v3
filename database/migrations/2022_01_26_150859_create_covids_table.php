@@ -63,6 +63,7 @@ class CreateCovidsTable extends Migration
 
             $table->dateTime('tanggal_ambil_data')->comment('dari sphaira');
             $table->smallInteger('status_sinkron')->comment('0=belum, 1=sudah')->default(0);
+            $table->smallInteger('butuh_sinkron_ulang')->default(0);
             $table->date('tanggal_sinkron')->nullable();
             $table->smallInteger('user_id');
             

@@ -114,7 +114,7 @@ class SDMController extends Controller
                             DB::raw('count(*) as Jumlah'),
                             // 'ParamedicID',
                             'SpecialtyCode')
-                            ->groupBy('SpecialtyCode')
+                            ->groupBy('GCParamedicType','SpecialtyCode')
                             ->get();
 
                             

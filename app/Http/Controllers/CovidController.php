@@ -27,7 +27,7 @@ class CovidController extends Controller
             // ->where('registration.IsDischarge', 0)
             $data = Registration::whereIn('RoomID', config('myconfig.room'))
             ->orderBy('registration.RegistrationDateTime')
-            ->groupBy('registration.RegistrationNo')
+            ->distinct('registration.RegistrationNo')
             ->limit(10)
             ->get();
 
@@ -42,6 +42,9 @@ class CovidController extends Controller
                     $button .= '</div>';
 
                     return $button;
+                })
+                ->editColumn('butuh_sinkron_ulang', function($row) {
+                    return $this->cek_sinkron($row->MedicalNo, $row->RegistrationDateTime);
                 })
                 ->editColumn('RegistrationNo', function($row) {
                     return '<button data-toggle="tooltip" data-id="'.$row->RegistrationNo.'" class="registrationno btn btn-success btn-sm">'.$row->RegistrationNo.'</button>';
@@ -79,6 +82,20 @@ class CovidController extends Controller
         return view('pages.covid.index', compact(
             'diagnosis'
         ));
+    }
+
+    public function cek_sinkron($no_rm, $registration_date)
+    {
+        $covid = Covid::where('noRM', $no_rm)
+                        ->where('tanggalMasuk', $registration_date)
+                        ->first();
+        if($covid != null) {
+            if($covid->butuh_sinkron_ulang == 1) {
+                return "<span class='badge badge-warning'>Kirim Ulang</span>";
+            }
+            return "<span class='badge badge-success'>Terkirim</span>";
+        }
+        return "<span class='badge badge-danger'>Belum disimpan</span>";
     }
 
     public function return($row)

@@ -429,6 +429,14 @@ class RegistrationController extends Controller
     {
         if($kabkota == null) return null;
         $kk = strtoupper($kabkota->County.' '.$kabkota->City);
+        if(isset($list->message)) {
+            if($list->message == 'Forbidden') {
+                return $list;
+            }
+            if($list->status == false) {
+                return $list;
+            }
+        }
         $id_kabkota = -1;
         foreach($list as $data) {
             if(trim($data->nama) == trim($kk)) {
@@ -443,8 +451,15 @@ class RegistrationController extends Controller
     {
         if($kecamatan == null) return null;
         $keca = strtoupper($kecamatan->District);
+        if(isset($list->message)) {
+            if($list->message == 'Forbidden') {
+                return $list;
+            }
+            if($list->status == false) {
+                return $list;
+            }
+        }
         $id_kec = -1;
-
         foreach($list as $data) {
             foreach($data as $kec) {
                 if($kec->kab_kota_id == $kabkota && trim($kec->nama) == trim($keca)) {

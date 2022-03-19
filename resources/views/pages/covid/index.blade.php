@@ -16,7 +16,7 @@
               {{ __('Data Covid') }}
             </div>
             <div class="float-right">
-              <button id="get-data-sphaira" class="btn btn-sm btn-primary"><i class="nc-icon nc-cloud-download-93"></i></button>
+              {{--<button id="get-data-sphaira" class="btn btn-sm btn-primary"><i class="nc-icon nc-cloud-download-93"></i></button>--}}
             </div>
           </div>
           <div class="card-body">
@@ -61,6 +61,7 @@
                 <tr>
                   <th>#</th>
                   <th>Aksi</th>
+                  <th>Status</th>
                   <th>Discharge</th>
                   <th>Nama</th>
                   <th>No RM</th>
@@ -95,6 +96,7 @@
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
             {data: 'action', name: 'action', searchable: false, orderable: false},
+            {data: 'butuh_sinkron_ulang',name: 'butuh_sinkron_ulang', searchable: false, orderable: false},
             {data: 'IsDischarge', name: 'IsDischarge'},
             {data: 'PatientName', name: 'PatientName'},
             {data: 'MedicalNo', name: 'MedicalNo'},
